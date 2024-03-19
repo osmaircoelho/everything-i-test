@@ -26,8 +26,13 @@ Route::get('/products', function () {
 
 
 Route::post('/products', function () {
-    Product::query()
-        ->create(request()->only('title'));
-
+    Product::query()->create(request()->only('title'));
     return response()->json('', 201);
 })->name('product.store');
+
+
+
+Route::put('/products{product}', function(Product $product){
+    $product->title = request()->get('title');
+    $product->save();
+})->name('product.update');
