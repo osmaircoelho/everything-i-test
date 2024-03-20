@@ -24,15 +24,20 @@ Route::get('/products', function () {
     ]);
 });
 
-
 Route::post('/products', function () {
     Product::query()->create(request()->only('title'));
     return response()->json('', 201);
 })->name('product.store');
 
-
-
-Route::put('/products{product}', function(Product $product){
+Route::put('/products/{product}', function(Product $product){
     $product->title = request()->get('title');
     $product->save();
 })->name('product.update');
+
+Route::delete('/product/{product}', function (Product $product){
+    $product->forceDelete();
+})->name('product.destroy');
+
+Route::delete('/product/{product}/soft-delete', function (Product $product){
+    $product->delete();
+})->name('product.soft-delete');
