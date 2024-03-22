@@ -16,6 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->foreignIdFor(User::class, 'owner_id');
+            $table->string('code')->nullable();
+            $table->boolean('released')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
