@@ -13,8 +13,6 @@ test('an email as sent', function () {
     post(route('sending-email', $user))->assertOk();
 
     Mail::assertSent(WelcomeEmail::class);
-
-
 });
 
 
@@ -30,7 +28,22 @@ test('an email was sent to user:x', function () {
     );
 });
 
-test('', function () {
+test('email subject should contain the user name', function () {
+    $user = User::factory()->create();
 
+    $mail = new WelcomeEmail($user);
+
+    expect($mail)
+        ->assertHasSubject('Thank you ' . $user->name);
+});
+
+it('email content should contain user email with a text', function () {
+    $user = User::factory()->create();
+
+    $mail = new WelcomeEmail($user);
+
+    expect($mail)
+        ->assertSeeInHtml($user->email)
+        ->assertSeeInHtml('Confirmando que o seu email eh: '.$user->email);
 });
 
