@@ -16,3 +16,21 @@ test('an email as sent', function () {
 
 
 });
+
+
+test('an email was sent to user:x', function () {
+    Mail::fake();
+
+    $user = User::factory()->create();
+
+    post(route('sending-email', $user))->assertOk();
+
+    Mail::assertSent(WelcomeEmail::class,
+        fn(WelcomeEmail $email) => $email->hasto($user->email)
+    );
+});
+
+test('', function () {
+
+});
+
