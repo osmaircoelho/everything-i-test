@@ -9,6 +9,7 @@ test('testing code 200')
 test('testing code 404')
 
     ->get('/404')
+    ->assertStatus(404)
     ->assertNotFound();
 
 

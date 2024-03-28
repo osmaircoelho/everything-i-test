@@ -9,13 +9,11 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/products', function () {
-
-    $products = Product::get(['title'])->toArray();
-
-    //$products->map(fn($p) => ['title' => $p->title] );
+    $products = \App\Models\Product::all();
+    $products->map(fn($p) => ['title' => $p->title]);
 
     return array_merge([
-        ['title' => 'Product A'],
-        ['title' => 'Product B'],
-    ], $products);
+        ['title' => 'Produto A'],
+        ['title' => 'Produto B'],
+    ], $products->toArray());
 });
