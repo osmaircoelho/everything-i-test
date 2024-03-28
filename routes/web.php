@@ -3,6 +3,7 @@
 use App\Jobs\ImportProductsJob;
 use App\Models\Product;
 use App\Models\User;
+use App\Notifications\NewProductNotification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -34,7 +35,15 @@ Route::post('/products', function () {
 
     ]);
 
-    Product::query()->create(request()->only('title'));
+    Product::query()
+        ->create([
+            'title' => request()->get('title'),
+            'owner_id' => auth()->id()
+        ]);
+
+    auth()->user()->notify(
+      new NewProductNotification()
+    );
 
     return response()->json('', 201);
 
@@ -52,7 +61,6 @@ Route::delete('/product/{product}', function (Product $product){
 Route::delete('/product/{product}/soft-delete', function (Product $product){
     $product->delete();
 })->name('product.soft-delete');
-
 
 
 Route::post('/import-products', function() {
