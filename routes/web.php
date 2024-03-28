@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\ImportProductsJob;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
@@ -53,13 +54,13 @@ Route::delete('/product/{product}/soft-delete', function (Product $product){
 })->name('product.soft-delete');
 
 
+
 Route::post('/import-products', function() {
    $data = request()->get('data');
 
-   \App\Jobs\ImportProductsJob::dispatch($data);
+   ImportProductsJob::dispatch($data, auth()->id());
 
-})->name('products.import');
-
+})->name('product.import');
 
 Route::post('/sending-email/{user}', function (User $user){
     Mail::to($user)->send(new \App\Mail\WelcomeEmail($user));
