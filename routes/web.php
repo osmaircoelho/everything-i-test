@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\CreateProductAction;
 use App\Jobs\ImportProductsJob;
 use App\Models\Product;
 use App\Models\User;
@@ -32,18 +33,13 @@ Route::post('/products', function () {
 
     request()->validate([
         'title' => ['required', 'max:255']
-
     ]);
 
-    Product::query()
-        ->create([
-            'title' => request()->get('title'),
-            'owner_id' => auth()->id()
-        ]);
-
-    auth()->user()->notify(
-      new NewProductNotification()
-    );
+    app(CreateProductAction::class)
+        ->handle(
+            request()->get('title'),
+            auth()->user()
+        );
 
     return response()->json('', 201);
 
