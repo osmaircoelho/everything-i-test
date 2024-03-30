@@ -1,10 +1,10 @@
 <?php
 
 use App\Actions\CreateProductAction;
+use App\Http\Middleware\SecureRouteMiddleware;
 use App\Jobs\ImportProductsJob;
 use App\Models\Product;
 use App\Models\User;
-use App\Notifications\NewProductNotification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -73,3 +73,32 @@ Route::post('/import-products', function() {
 Route::post('/sending-email/{user}', function (User $user){
     Mail::to($user)->send(new \App\Mail\WelcomeEmail($user));
 })->name('sending-email');
+
+Route::get('/secure-route', fn() => ['oi'])
+    ->middleware(SecureRouteMiddleware::class)
+    ->name('secure-route');
+
+Route::post('/upload-avatar', function (){
+
+    $file = request()->file('file');
+    $file->store(
+        path: '/',
+        options: ['disk' => 'avatar']
+    );
+
+})->name('upload-avatar');
+
+Route::post('/import-products', function (){
+
+    $file = request()->file('file');
+
+    $openToRead = fopen($file->getRealPath(),'r');
+
+    while (($data = fgetcsv($openToRead, 1000, ',')) !== false){
+        Product::query()->create([
+            'title' => $data[0],
+            'owner_id' => $data[1],
+        ]);
+    }
+
+})->name('import-products');
