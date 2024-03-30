@@ -1,6 +1,11 @@
 <?php
 
+use App\Actions\CreateProductAction;
+use App\Jobs\ImportProductsJob;
 use App\Models\Product;
+use App\Models\User;
+use App\Notifications\NewProductNotification;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,6 +14,10 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
     return ['oi'];
+});
+
+Route::get('/404', function () {
+    return response('', '404');
 });
 
 Route::get('/403', function () {
@@ -25,8 +34,19 @@ Route::get('/products', function () {
 });
 
 Route::post('/products', function () {
-    Product::query()->create(request()->only('title'));
+
+    request()->validate([
+        'title' => ['required', 'max:255']
+    ]);
+
+    app(CreateProductAction::class)
+        ->handle(
+            request()->get('title'),
+            auth()->user()
+        );
+
     return response()->json('', 201);
+
 })->name('product.store');
 
 Route::put('/products/{product}', function(Product $product){
@@ -41,3 +61,15 @@ Route::delete('/product/{product}', function (Product $product){
 Route::delete('/product/{product}/soft-delete', function (Product $product){
     $product->delete();
 })->name('product.soft-delete');
+
+
+Route::post('/import-products', function() {
+   $data = request()->get('data');
+
+   ImportProductsJob::dispatch($data, auth()->id());
+
+})->name('product.import');
+
+Route::post('/sending-email/{user}', function (User $user){
+    Mail::to($user)->send(new \App\Mail\WelcomeEmail($user));
+})->name('sending-email');

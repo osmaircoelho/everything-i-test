@@ -7,8 +7,8 @@ it('should list products')
     ->get('products')
     ->assertOk()
     ->assertSeeTextInOrder([
-        'Product A',
-        'Product B'
+        'Produto A',
+        'Produto B'
     ]);
 
 it('should list products from database', function() {
