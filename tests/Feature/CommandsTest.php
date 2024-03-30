@@ -1,6 +1,6 @@
 <?php
 
-use App\Console\Commands\CreateProductCommand;
+use App\Console\Commands\ExportProductToAmazon;
 use App\Models\User;
 use function Pest\Laravel\artisan;
 use function Pest\Laravel\assertDatabaseCount;
@@ -10,7 +10,7 @@ it('should be able to create a product via command', function (){
    $user = User::factory()->create();
 
    artisan(
-       CreateProductCommand::class,
+       ExportProductToAmazon::class,
     ['title' => 'Product 1', 'user' => $user->id]
    )
        ->assertSuccessful();
@@ -23,7 +23,7 @@ it('should asks for user and title if is not passed as arguments', function () {
 
     $user = User::factory()->create();
 
-    artisan(CreateProductCommand::class, [])
+    artisan(ExportProductToAmazon::class, [])
 
         ->expectsQuestion('Please, provide a valid user id ', $user->id)
 
