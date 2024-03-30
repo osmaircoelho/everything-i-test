@@ -6,12 +6,14 @@ use App\Models\Product;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\{InteractsWithQueue, SerializesModels};
 
 class ImportProductsJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Create a new job instance.
@@ -19,8 +21,7 @@ class ImportProductsJob implements ShouldQueue
     public function __construct(
         protected readonly array $data,
         protected readonly int   $ownerId
-    )
-    {
+    ) {
     }
 
     /**
@@ -30,7 +31,7 @@ class ImportProductsJob implements ShouldQueue
     {
         foreach ($this->data as $data) {
             Product::query()->create([
-                'title' => $data['title'],
+                'title'    => $data['title'],
                 'owner_id' => $this->ownerId,
             ]);
         }

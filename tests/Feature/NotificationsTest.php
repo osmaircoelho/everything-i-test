@@ -3,10 +3,10 @@
 use App\Models\User;
 use App\Notifications\NewProductNotification;
 use Illuminate\Support\Facades\Notification;
-use function Pest\Laravel\actingAs;
-use function Pest\Laravel\postJson;
 
-it('should sends a notifications about a new product' , function (){
+use function Pest\Laravel\{actingAs, postJson};
+
+it('should sends a notifications about a new product', function () {
 
     Notification::fake();
 

@@ -4,10 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\{Builder, Model, SoftDeletes};
 
 class Product extends Model
 {
@@ -15,11 +13,11 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'code', 'released', 'owner_id'
+        'title', 'code', 'released', 'owner_id',
     ];
 
     protected $casts = [
-        'code' => 'hashed'
+        'code' => 'hashed',
     ];
 
     public function owner(): BelongsTo
@@ -29,7 +27,7 @@ class Product extends Model
 
     public function title(): Attribute
     {
-        return new Attribute(get:fn($value) => ucfirst($value));
+        return new Attribute(get:fn ($value) => ucfirst($value));
     }
 
     public function scopeReleased(Builder $builder)

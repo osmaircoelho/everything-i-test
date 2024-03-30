@@ -18,7 +18,8 @@ class SecureRouteMiddleware
 
         abort_unless(
             $request->user()->email == 'osmair.coelho@gmail.com',
-            Response::HTTP_FORBIDDEN);
+            Response::HTTP_FORBIDDEN
+        );
 
         return $next($request);
     }

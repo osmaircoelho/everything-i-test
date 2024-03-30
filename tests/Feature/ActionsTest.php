@@ -1,13 +1,12 @@
 <?php
+
 use App\Actions\CreateProductAction;
 use App\Models\User;
 use Illuminate\Support\Facades\Notification;
-use function Pest\Laravel\actingAs;
-use function Pest\Laravel\assertDatabaseCount;
-use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\postJson;
 
-it('should call the action to create a product', function (){
+use function Pest\Laravel\{actingAs, assertDatabaseCount, assertDatabaseHas, postJson};
+
+it('should call the action to create a product', function () {
 
     Notification::fake();
 
@@ -16,7 +15,7 @@ it('should call the action to create a product', function (){
         ->shouldReceive('handle')
         ->atLeast()->once();
     # Arrange
-    $user = User::factory()->create();
+    $user  = User::factory()->create();
     $title = 'Product 1';
 
     actingAs($user);
@@ -36,7 +35,7 @@ it('should be able to create a product', function () {
 
     assertDatabaseCount('products', 1);
     assertDatabaseHas('products', [
-       'title' => 'Product 1',
-       'owner_id' => $user->id
+        'title'    => 'Product 1',
+        'owner_id' => $user->id,
     ]);
 });

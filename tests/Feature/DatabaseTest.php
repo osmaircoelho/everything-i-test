@@ -1,17 +1,9 @@
 <?php
 
-use App\Models\Product;
-use App\Models\User;
-use function Pest\Laravel\actingAs;
-use function Pest\Laravel\assertDatabaseCount;
-use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\assertDatabaseMissing;
-use function Pest\Laravel\assertSoftDeleted;
-use function Pest\Laravel\deleteJson;
-use function Pest\Laravel\postJson;
-use function Pest\Laravel\putJson;
-use function PHPUnit\Framework\assertSame;
-use function PHPUnit\Framework\assertTrue;
+use App\Models\{Product, User};
+
+use function Pest\Laravel\{actingAs, assertDatabaseCount, assertDatabaseHas, assertDatabaseMissing, assertSoftDeleted, deleteJson, postJson, putJson};
+use function PHPUnit\Framework\{assertSame, assertTrue};
 
 it('should be able o create a product', function () {
 
@@ -29,7 +21,6 @@ it('should be able o create a product', function () {
 
     # verificar se este registro existe(has) no BD
     assertDatabaseHas('products', ['title' => 'Titulo qualquer']);
-
 
     assertTrue(
         Product::query()
@@ -52,15 +43,14 @@ it('should be able to update a product', function () {
         ['title' => 'Atualizando o titulo']
     )->assertOk();
 
-
     # o mais usado
     # checa se existe o produto
     /* Esta linha verifica se o banco de dados contém um registro na tabela 'products' com o ID e título correspondentes
        ao produto atualizado.
     */
     assertDatabaseHas('products', [
-        'id' => $p->id,
-        'title' => 'Atualizando o titulo'
+        'id'    => $p->id,
+        'title' => 'Atualizando o titulo',
     ]);
 
     /* Aqui, é feita uma expectativa (assertion) usando um objeto do tipo Product ($p). O método `refresh()` é usado
@@ -81,7 +71,7 @@ it('should be able to delete a product', function () {
         ->assertOk();
 
     assertDatabaseMissing('products', [
-        'id' => $product->id
+        'id' => $product->id,
     ]);
 
     assertDatabaseCount('products', 0);
@@ -95,13 +85,8 @@ it('should be able to soft-delete a product', function () {
         ->assertOk();
 
     assertSoftDeleted('products', [
-        'id' => $product->id
+        'id' => $product->id,
     ]);
 
     assertDatabaseCount('products', 1);
 });
-
-
-
-
-

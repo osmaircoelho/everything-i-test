@@ -1,12 +1,12 @@
 <?php
 
-use App\Models\Product;
-use App\Models\User;
+use App\Models\{Product, User};
 use Illuminate\Support\Facades\Hash;
+
 use function PHPUnit\Framework\assertTrue;
 
-test('model relationship :: product owner should be an user', function (){
-    $user = User::factory()->create();
+test('model relationship :: product owner should be an user', function () {
+    $user    = User::factory()->create();
     $product = Product::factory()->create(['owner_id' => $user->id]);
 
     $owner = $product->owner;
@@ -15,14 +15,13 @@ test('model relationship :: product owner should be an user', function (){
         ->toBeInstanceOf(User::class);
 });
 
-test('model get mutator :: product title should always be str()->title()', function (){
+test('model get mutator :: product title should always be str()->title()', function () {
 
     $product = Product::factory()->create(['title' => 'titulo']);
 
     expect($product)
         ->title->toBe('Titulo');
 });
-
 
 test('model set mutator :: product code should be encrypted', function () {
 
@@ -35,7 +34,6 @@ test('model scopes :: should bling only released products', function () {
     Product::factory()->count(10)->create(['released' => true]);
     Product::factory()->count(5)->create(['released' => false]);
 
-   expect(Product::query()->released()->get())
-        ->toHaveCount(10)
-    ;
+    expect(Product::query()->released()->get())
+         ->toHaveCount(10);
 });

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Product;
+
 use function Pest\Laravel\get;
 
 it('should list products')
@@ -8,10 +9,10 @@ it('should list products')
     ->assertOk()
     ->assertSeeTextInOrder([
         'Produto A',
-        'Produto B'
+        'Produto B',
     ]);
 
-it('should list products from database', function() {
+it('should list products from database', function () {
     $product1 = Product::factory()->create();
     $product2 = Product::factory()->create();
 
@@ -21,6 +22,6 @@ it('should list products from database', function() {
             'Produto A',
             'Produto B',
             $product1->title,
-            $product2->title
+            $product2->title,
         ]);
 });

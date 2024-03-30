@@ -3,10 +3,8 @@
 use App\Jobs\ImportProductsJob;
 use App\Models\User;
 use Illuminate\Support\Facades\Queue;
-use function Pest\Laravel\actingAs;
-use function Pest\Laravel\assertDatabaseCount;
-use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\postJson;
+
+use function Pest\Laravel\{actingAs, assertDatabaseCount, assertDatabaseHas, postJson};
 
 it('should dispatch a job to the queue', function () {
     Queue::fake();
@@ -20,13 +18,11 @@ it('should dispatch a job to the queue', function () {
             ['title' => 'Product 1'],
             ['title' => 'Product 2'],
             ['title' => 'Product 3'],
-        ]
+        ],
     ]);
 
     Queue::assertPushed(ImportProductsJob::class);
 });
-
-
 
 /*it('should dispatch a job to the queue', function (){
 
