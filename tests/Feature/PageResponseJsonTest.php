@@ -1,15 +1,15 @@
 <?php
 
 use App\Models\Product;
+
 use function Pest\Laravel\get;
 
 test('nossa api de produtos precisa retornar a lista de produtos')
     ->get('/api/products')
     ->assertExactJson([
         ['title' => 'Produto A'],
-        ['title' => 'Produto B']
+        ['title' => 'Produto B'],
     ]);
-
 
 it('should list products from database', function () {
 
@@ -24,6 +24,6 @@ it('should list products from database', function () {
             ['title' => 'Produto A'],
             ['title' => 'Produto B'],
             ['title' => $product1->title],
-            ['title' => $product2->title]
+            ['title' => $product2->title],
         ]);
 });

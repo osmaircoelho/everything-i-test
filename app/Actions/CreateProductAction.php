@@ -2,17 +2,17 @@
 
 namespace App\Actions;
 
-use App\Models\Product;
-use App\Models\User;
+use App\Models\{Product, User};
 use App\Notifications\NewProductNotification;
 
-class CreateProductAction{
-    public function handle(string $title, User $user):void
+class CreateProductAction
+{
+    public function handle(string $title, User $user): void
     {
         Product::query()
             ->create([
-                'title' => $title,
-                'owner_id' => $user->id
+                'title'    => $title,
+                'owner_id' => $user->id,
             ]);
 
         $user->notify(

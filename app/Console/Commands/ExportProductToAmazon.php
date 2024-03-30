@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Console\Commands;
 
 use App\Models\Product;
@@ -30,8 +29,8 @@ class ExportProductToAmazon extends Command
     {
         Http::withToken('123')
             ->post(
-            'https://api.amazon.com/products',
-             Product::all()->map(fn($p) => ['title' => $p->title])->toArray()
-        );
+                'https://api.amazon.com/products',
+                Product::all()->map(fn ($p) => ['title' => $p->title])->toArray()
+            );
     }
 }

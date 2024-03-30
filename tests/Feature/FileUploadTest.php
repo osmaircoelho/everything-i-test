@@ -3,9 +3,10 @@
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use function Pest\Laravel\{actingAs, post, assertDatabaseCount, assertDatabaseHas};
 
-it('should be able to upload an image', function (){
+use function Pest\Laravel\{actingAs, assertDatabaseCount, assertDatabaseHas, post};
+
+it('should be able to upload an image', function () {
     Storage::fake('avatar');
 
     $user = User::factory()->create();
@@ -15,7 +16,7 @@ it('should be able to upload an image', function (){
     $file = UploadedFile::fake()->image('image.jpg');
 
     post(route('upload-avatar'), [
-        'file' => $file
+        'file' => $file,
     ])->assertOk();
 
     Storage::disk('avatar')->assertExists($file->hashName());
@@ -33,7 +34,6 @@ it('should be to import a csv file', function () {
     product 2,1
     txt;
 
-
     $file = UploadedFile::fake()->createWithContent('products.csv', $data);
 
     post(route('import-products'), ['file' => $file])->assertOk();
@@ -41,6 +41,5 @@ it('should be to import a csv file', function () {
     assertDatabaseHas('products', ['title' => 'Product 1', 'owner_id' => 2]);
     assertDatabaseHas('products', ['title' => 'Product 2', 'owner_id' => 1]);
     assertDatabaseCount('products', 2);
-
 
 });
