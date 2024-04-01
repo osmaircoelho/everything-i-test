@@ -10,13 +10,12 @@ de teste chamada Pest PHP, para fins de estudos.
 Pest é um framework de teste com foco na simplicidade, meticulosamente projetado para trazer de volta a alegria dos
 testes em PHP.
 
-## ✨ Demonstração
+## ✨ Demonstração em Vídeo 🎥
 
-Insira um gif ou um link de alguma demonstração.
-<img src="public/demoProject.gif" alt="">
-<p align="center">
-  <img width="700" align="center" src="public/demoProject.gif" alt="demo"/>
-</p>
+<video width="700" controls>
+  <source src="public/demoProject.mp4" type="video/mp4">
+  Seu navegador não suporta a reprodução deste vídeo.
+</video>
 
 ## 📋 Assuntos abordados
 
