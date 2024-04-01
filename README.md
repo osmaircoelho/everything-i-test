@@ -13,7 +13,7 @@ testes em PHP.
 ## ✨ Demonstração em Vídeo 🎥
 
 <video width="700" controls>
-  <source src="public/demoProject.mp4" type="video/mp4">
+  <source src="https://github.com/osmaircoelho/everything-i-test/blob/feature/readme/public/demoProject.mp4" type="video/mp4">
   Seu navegador não suporta a reprodução deste vídeo.
 </video>
 
