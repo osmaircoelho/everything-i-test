@@ -1,48 +1,48 @@
-# Projeto "Everything I Test" 👋
+# Project "Everything I Test" 👋
 
-Este repositório contém um projeto desenvolvido utilizando Laravel 11 e Pest PHP. É um projeto que utiliza a ferramenta
-de teste chamada Pest PHP, para fins de estudos.
+This repository contains a project developed using Laravel 11 and Pest PHP. It is a project that utilizes the testing
+tool called Pest PHP, for study purposes.
 
-## ℹ️ Referência
+## ℹ️ Reference
 
 - [Pest PHP](https://pestphp.com/) 🐛
 
-Pest é um framework de teste com foco na simplicidade, meticulosamente projetado para trazer de volta a alegria dos
-testes em PHP.
+Pest is a testing framework focused on simplicity, meticulously designed to bring back the joy of testing in PHP.
 
-## ✨ Demonstração 🎥
-<img src="public/26mb.gif">
+## ✨ Demonstration 🎥
 
-## 📋 Assuntos abordados
+![Demo](public/demoProject.gif)
 
-- Introdução ao PEST 🐛: Introdução ao PEST, uma estrutura de teste para PHP.
-- Page Response Status 📈: Testes para verificar o status da resposta da página.
-- Page Response Text 📝: Testes para verificar o texto da resposta da página.
-- Page Response View 👀: Testes para verificar a visualização da resposta da página.
-- Page Response Json 📄: Testes para verificar a resposta JSON da página.
-- Banco de dados 💾: Testes relacionados ao banco de dados.
-- Validações ✅: Testes para validar entradas de usuário.
-- Models 🏗️: Testes para verificar o funcionamento dos modelos.
-- Emails 📧: Testes relacionados ao envio de e-mails.
-- Jobs e Filas ⚙️: Testes para jobs e filas.
-- Notificações 🔔: Testes para notificações.
-- Actions 🎯: Testes para ações específicas.
-- Comandos 🛠️: Testes para comandos do Artisan.
-- Middlewares ⚖️: Testes para middlewares.
-- Upload de Arquivos 📂: Testes relacionados ao upload de arquivos.
-- Exceptions ❌: Testes para exceções.
-- Chamadas HTTP Faltas 🌐: Testes para chamadas HTTP falhas.
-- Testando Chamadas HTTP 📲: Testes para chamadas HTTP.
-- Mock 🃏: Utilização de mocks para testes.
+## 📋 Topics Covered
 
-## 👨‍💻 Autores
+- Introduction to PEST 🐛: Introduction to PEST, a testing framework for PHP.
+- Page Response Status 📈: Tests to verify the page response status.
+- Page Response Text 📝: Tests to verify the page response text.
+- Page Response View 👀: Tests to verify the page response view.
+- Page Response JSON 📄: Tests to verify the page JSON response.
+- Database 💾: Tests related to the database.
+- Validations ✅: Tests to validate user inputs.
+- Models 🏗️: Tests to verify the functionality of models.
+- Emails 📧: Tests related to email sending.
+- Jobs and Queues ⚙️: Tests for jobs and queues.
+- Notifications 🔔: Tests for notifications.
+- Actions 🎯: Tests for specific actions.
+- Commands 🛠️: Tests for Artisan commands.
+- Middlewares ⚖️: Tests for middlewares.
+- File Uploads 📂: Tests related to file uploads.
+- Exceptions ❌: Tests for exceptions.
+- Failed HTTP Calls 🌐: Tests for failed HTTP calls.
+- Testing HTTP Calls 📲: Tests for HTTP calls.
+- Mocking 🃏: Usage of mocks for testing.
+
+## 👨‍💻 Authors
 
 - [@osmaircoelho](https://www.github.com/osmaircoelho)
 
-## 📄 Licença
+## 📄 License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-## 🛠️ Stack Utilizada
+## 🛠️ Stack Used
 
 **Back-end:** Laravel 11, Pest PHP 🛠️
