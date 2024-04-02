@@ -11,6 +11,7 @@ Pest é um framework de teste com foco na simplicidade, meticulosamente projetad
 testes em PHP.
 
 ## ✨ Demonstração 🎥
+<img src="public/26mb.gif">
 
 ## 📋 Assuntos abordados
 
