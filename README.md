@@ -12,8 +12,6 @@ testes em PHP.
 
 ## ✨ Demonstração 🎥
 
-![Alt Text](https://drive.google.com/file/d/1NWOxs4fZBIHolcWq2laAf9o7JjjOenyy/view?usp=drive_link)
-
 ## 📋 Assuntos abordados
 
 - Introdução ao PEST 🐛: Introdução ao PEST, uma estrutura de teste para PHP.
